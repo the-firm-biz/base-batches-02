@@ -1,0 +1,2 @@
+CREATE UNIQUE INDEX "unique_one_time_events_per_cast_hash" ON "horsepower_events" USING btree ("recipient_account_id","cast_hash") WHERE "horsepower_events"."horsepower_event_source_id" IN (4);--> statement-breakpoint
+ALTER TABLE "horsepower_events" ADD CONSTRAINT "cast_hash_required_for_channel_behavior" CHECK ("horsepower_events"."horsepower_event_source_id" != 4 OR "horsepower_events"."cast_hash" IS NOT NULL);

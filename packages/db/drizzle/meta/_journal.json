@@ -1,0 +1,62 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1760264050923,
+      "tag": "0000_massive_night_nurse",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1760264062027,
+      "tag": "0001_CUSTOM_init_seeds",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1760264076205,
+      "tag": "0002_CUSTOM_deployer_source_trigger",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1760310933754,
+      "tag": "0003_simple_stingray",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1761050522025,
+      "tag": "0004_large_spot",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1761050537364,
+      "tag": "0005_CUSTOM_horsepower_recipient_account_types_seeds",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1761050548882,
+      "tag": "0006_CUSTOM_horsepower_events_triggers",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1761126388620,
+      "tag": "0007_uneven_blacklash",
+      "breakpoints": true
+    }
+  ]
+}

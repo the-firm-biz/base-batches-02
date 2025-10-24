@@ -1,0 +1,103 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "concurrency": "11",
+  "globalEnv": [
+    "NODE_ENV",
+    "PORT",
+    "NEXT_PUBLIC_VERCEL_ENV",
+    "VERCEL_ENV",
+    "VERCEL_TARGET_ENV",
+    "NEXT_PUBLIC_VERCEL_TARGET_ENV",
+    "VERCEL_GIT_COMMIT_REF",
+
+    "NEXT_PUBLIC_RPC_TRANSPORT_URL",
+    "NEXT_PUBLIC_KERNEL_VALIDATOR_ADDRESS",
+    "NEXT_PUBLIC_ONCHAINKIT_API_KEY",
+    "NEXT_PUBLIC_PRIVY_APP_ID",
+    "NEXT_PUBLIC_PRIVY_DEBUG_AUTHORIZATION_KEY_QUORUM_ID",
+    "NEXT_PUBLIC_FARCASTER_CHANNEL_INVITE_CODE",
+
+    "FLY_APP_NAME",
+    "FLY_MACHINE_ID",
+
+    "PRIVY_APP_ID",
+    "PRIVY_APP_SECRET",
+    "PRIVY_VERIFICATION_KEY",
+    "PRIVY_DEBUG_AUTHORIZATION_KEY_PRIVATE_KEY",
+
+    "ZERODEV_RPC",
+    "KERNEL_VALIDATOR_PRIVATE_KEY",
+    "SESSION_KEY_ENCRYPTION_SECRET",
+
+    "DATABASE_URL",
+    "NEYNAR_API_KEY",
+    "SERVER_ALCHEMY_API_KEY",
+    "RPC_TRANSPORT_URL",
+    "QUICKNODE_TRANSPORT_URL",
+    "REDIS_URL",
+    "UPSTASH_REDIS_REST_URL",
+    "UPSTASH_REDIS_REST_TOKEN",
+    "CONTENTFUL_SPACE_ID",
+    "CONTENTFUL_ACCESS_TOKEN",
+
+    "ENCORE_API_URL",
+    "INTERNAL_ENCORE_API_KEY",
+
+    "IS_SLACK_NOTIFICATION_ENABLED",
+    "SLACK_ESPIONAGEBOT_TOKEN",
+    "SLACK_INFRABOT_TOKEN",
+    "WIRETAP_NOTIFICATIONS_CHANNEL_ID",
+    "INFRA_NOTIFICATIONS_CHANNEL_ID",
+    "REINDEX_SCRIPT_HORSEPOWER_AWARDING_FID",
+    "STAGING_PASSWORD"
+  ],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": [
+        ".next/**",
+        "!.next/cache/**",
+        "dist/**",
+        "workflow-bundles/**"
+      ]
+    },
+    "lint": {
+      "dependsOn": ["^build", "^lint"]
+    },
+    "ts:check": {
+      "dependsOn": ["^build", "^ts:check"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"]
+    },
+    "db:migration": {
+      "dependsOn": ["@wiretap/db#ts:check"],
+      "cache": false
+    },
+    "db:migration-generate": {
+      "dependsOn": ["@wiretap/db#ts:check"],
+      "cache": false
+    },
+    "db:migration-push": {
+      "cache": false
+    },
+    "cache:clear": {
+      "cache": false
+    },
+    "test-db:migration": {
+      "dependsOn": ["@wiretap/db#ts:check"],
+      "cache": false
+    },
+    "dev": {
+      "persistent": true,
+      "cache": false
+    },
+    "test": {
+      "dependsOn": ["@wiretap/vitest-config#build", "^build", "^test"],
+      "outputs": ["coverage.json"]
+    },
+    "test:watch": {
+      "cache": false,
+      "persistent": true
+    }
+  }
+}

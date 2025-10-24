@@ -1,0 +1,45 @@
+{
+  "name": "wiretap",
+  "description": "> _\"While our competitors are deploying today's strategies, we're already > frontrunning tomorrow's mistakes.\"_ > > — Copyright © Franklin J. Merrimont, Founder & Chairman, The Firm",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "turbo run build",
+    "build:packages": "turbo run build --filter='./packages/*'",
+    "cache:clear:webapp": "turbo run cache:clear --filter=@wiretap/webapp",
+    "dev:redis:up": "docker compose -f  docker-compose.test.yaml up -d redis",
+    "dev:redis:down": "docker compose -f  docker-compose.test.yaml down  redis",
+    "dev": "turbo run build:packages && turbo run dev",
+    "dev:packages": "turbo run dev --filter='./packages/*'",
+    "dev:encore-api": "pnpm run build:packages && pnpm turbo run dev --filter={@wiretap/encore-api,'./packages/*'}",
+    "dev:workers": "pnpm run build:packages && pnpm run build --filter=@wiretap/temporal && pnpm --filter @wiretap/temporal run dev",
+    "start:workers": "pnpm run build:packages && pnpm run build --filter=@wiretap/temporalio --force && pnpm --filter @wiretap/temporal run start",
+    "dev:webapp": "pnpm run build:packages && pnpm turbo run dev --filter={@wiretap/webapp,'./packages/*'}",
+    "test": "pnpm run test-db:start && pnpm run test-db:migration && turbo run test ; pnpm run test-db:stop",
+    "test:watch:temporal": "pnpm run test-db:start && pnpm run test-db:migration && turbo run test:watch --ui=tui --filter=@wiretap/temporal; pnpm run test-db:stop",
+    "test:watch:db": "pnpm run test-db:start && pnpm run test-db:migration && turbo run test:watch --ui=tui --filter=@wiretap/db; pnpm run test-db:stop",
+    "lint": "turbo run lint",
+    "ts:check": "turbo run ts:check",
+    "db:migration": "turbo run db:migration",
+    "db:migration-generate": "turbo run db:migration-generate",
+    "db:migration-push": "turbo run db:migration-push",
+    "test-db:start": "docker compose -f docker-compose.test.yaml up -d",
+    "test-db:migration": "turbo run test-db:migration --filter=@wiretap/db",
+    "test-db:stop": "docker compose -f docker-compose.test.yaml down"
+  },
+  "devDependencies": {
+    "@total-typescript/tsconfig": "^1.0.4",
+    "@types/mime": "3.0.4",
+    "@types/node": "^22.14.1",
+    "eslint": "catalog:",
+    "prettier": "3.5.3",
+    "tsx": "4.19.3",
+    "turbo": "^2.5.4",
+    "typescript": "^5.8.3"
+  },
+  "packageManager": "pnpm@10.8.1",
+  "engines": {
+    "node": ">=22.0.0"
+  }
+}

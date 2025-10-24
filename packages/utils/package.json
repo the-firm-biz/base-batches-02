@@ -1,0 +1,43 @@
+{
+  "name": "@wiretap/utils",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    "./shared": {
+      "types": "./dist/src/shared/index.d.ts",
+      "default": "./dist/src/shared/index.js"
+    },
+    "./server": {
+      "types": "./dist/src/server/index.d.ts",
+      "default": "./dist/src/server/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch --preserveWatchOutput",
+    "lint": "eslint .",
+    "ts:check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@neynar/nodejs-sdk": "^2.46.0",
+    "@privy-io/node": "catalog:",
+    "@pythnetwork/hermes-client": "^2.0.0",
+    "@uniswap/sdk-core": "catalog:",
+    "@uniswap/v3-sdk": "catalog:",
+    "@vitest/coverage-istanbul": "catalog:",
+    "@wiretap/config": "workspace:*",
+    "@wiretap/logger": "workspace:*",
+    "dotenv": "catalog:",
+    "exponential-backoff": "^3.1.2",
+    "viem": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@wiretap/eslint-config": "workspace:*",
+    "@wiretap/prettier-config": "workspace:*",
+    "@wiretap/typescript-config": "workspace:*",
+    "@wiretap/vitest-config": "workspace:*",
+    "vite": "catalog:",
+    "vitest": "catalog:"
+  }
+}

@@ -1,0 +1,37 @@
+node_modules
+.env
+.env.local
+dist
+.turbo
+tsconfig.tsbuildinfo
+
+# .cursor directory - ignore most things but allow rule files
+.cursor/*
+!.cursor/rules/
+.cursor/rules/*
+!.cursor/rules/*.mdc
+
+# testing
+**/coverage
+**/coverage.json
+
+# claude
+.claude/
+!.claude/context/
+!.claude/context/*
+!.claude/commands/init.md
+
+# generated temporal workflow bundles
+workflow-bundles/
+
+# local files
+.local
+
+# ides
+.idea/
+*.iml
+
+# AI stuff
+.specify/
+specs/
+.serena/

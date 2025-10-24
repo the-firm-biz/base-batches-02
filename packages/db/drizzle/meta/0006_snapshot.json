@@ -1,0 +1,2023 @@
+{
+  "id": "1c329c89-2e9b-4efb-8648-d3050db7b7bd",
+  "prevId": "196b8a7c-caf4-485f-b4ac-eb60746c09db",
+  "version": "7",
+  "dialect": "postgresql",
+  "tables": {
+    "public.account_wallet_trackers": {
+      "name": "account_wallet_trackers",
+      "schema": "",
+      "columns": {
+        "tracker_the_firm_account_id": {
+          "name": "tracker_the_firm_account_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tracked_wallet_id": {
+          "name": "tracked_wallet_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "max_spend": {
+          "name": "max_spend",
+          "type": "numeric(78, 0)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "account_wallet_trackers_tracker_the_firm_account_id_the_firm_accounts_id_fk": {
+          "name": "account_wallet_trackers_tracker_the_firm_account_id_the_firm_accounts_id_fk",
+          "tableFrom": "account_wallet_trackers",
+          "columnsFrom": [
+            "tracker_the_firm_account_id"
+          ],
+          "tableTo": "the_firm_accounts",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        },
+        "account_wallet_trackers_tracked_wallet_id_wallets_id_fk": {
+          "name": "account_wallet_trackers_tracked_wallet_id_wallets_id_fk",
+          "tableFrom": "account_wallet_trackers",
+          "columnsFrom": [
+            "tracked_wallet_id"
+          ],
+          "tableTo": "wallets",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "account_wallet_trackers_tracker_the_firm_account_id_tracked_wallet_id_pk": {
+          "name": "account_wallet_trackers_tracker_the_firm_account_id_tracked_wallet_id_pk",
+          "columns": [
+            "tracker_the_firm_account_id",
+            "tracked_wallet_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.account_farcaster_trackers": {
+      "name": "account_farcaster_trackers",
+      "schema": "",
+      "columns": {
+        "tracker_the_firm_account_id": {
+          "name": "tracker_the_firm_account_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "tracked_fid": {
+          "name": "tracked_fid",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "max_spend": {
+          "name": "max_spend",
+          "type": "numeric(78, 0)",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "account_farcaster_trackers_tracker_the_firm_account_id_the_firm_accounts_id_fk": {
+          "name": "account_farcaster_trackers_tracker_the_firm_account_id_the_firm_accounts_id_fk",
+          "tableFrom": "account_farcaster_trackers",
+          "columnsFrom": [
+            "tracker_the_firm_account_id"
+          ],
+          "tableTo": "the_firm_accounts",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        },
+        "account_farcaster_trackers_tracked_fid_farcaster_accounts_fid_fk": {
+          "name": "account_farcaster_trackers_tracked_fid_farcaster_accounts_fid_fk",
+          "tableFrom": "account_farcaster_trackers",
+          "columnsFrom": [
+            "tracked_fid"
+          ],
+          "tableTo": "farcaster_accounts",
+          "columnsTo": [
+            "fid"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "account_farcaster_trackers_tracker_the_firm_account_id_tracked_fid_pk": {
+          "name": "account_farcaster_trackers_tracker_the_firm_account_id_tracked_fid_pk",
+          "columns": [
+            "tracker_the_firm_account_id",
+            "tracked_fid"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.farcaster_accounts_wallets": {
+      "name": "farcaster_accounts_wallets",
+      "schema": "",
+      "columns": {
+        "farcaster_account_id": {
+          "name": "farcaster_account_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "wallet_id": {
+          "name": "wallet_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "farcaster_accounts_wallets_farcaster_account_id_farcaster_accounts_id_fk": {
+          "name": "farcaster_accounts_wallets_farcaster_account_id_farcaster_accounts_id_fk",
+          "tableFrom": "farcaster_accounts_wallets",
+          "columnsFrom": [
+            "farcaster_account_id"
+          ],
+          "tableTo": "farcaster_accounts",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        },
+        "farcaster_accounts_wallets_wallet_id_wallets_id_fk": {
+          "name": "farcaster_accounts_wallets_wallet_id_wallets_id_fk",
+          "tableFrom": "farcaster_accounts_wallets",
+          "columnsFrom": [
+            "wallet_id"
+          ],
+          "tableTo": "wallets",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "farcaster_accounts_wallets_farcaster_account_id_wallet_id_pk": {
+          "name": "farcaster_accounts_wallets_farcaster_account_id_wallet_id_pk",
+          "columns": [
+            "farcaster_account_id",
+            "wallet_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.farcaster_accounts_x_accounts": {
+      "name": "farcaster_accounts_x_accounts",
+      "schema": "",
+      "columns": {
+        "farcaster_account_id": {
+          "name": "farcaster_account_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "x_account_id": {
+          "name": "x_account_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "farcaster_accounts_x_accounts_farcaster_account_id_farcaster_accounts_id_fk": {
+          "name": "farcaster_accounts_x_accounts_farcaster_account_id_farcaster_accounts_id_fk",
+          "tableFrom": "farcaster_accounts_x_accounts",
+          "columnsFrom": [
+            "farcaster_account_id"
+          ],
+          "tableTo": "farcaster_accounts",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        },
+        "farcaster_accounts_x_accounts_x_account_id_x_accounts_id_fk": {
+          "name": "farcaster_accounts_x_accounts_x_account_id_x_accounts_id_fk",
+          "tableFrom": "farcaster_accounts_x_accounts",
+          "columnsFrom": [
+            "x_account_id"
+          ],
+          "tableTo": "x_accounts",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "farcaster_accounts_x_accounts_farcaster_account_id_x_account_id_pk": {
+          "name": "farcaster_accounts_x_accounts_farcaster_account_id_x_account_id_pk",
+          "columns": [
+            "farcaster_account_id",
+            "x_account_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.employee_cohorts": {
+      "name": "employee_cohorts",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "employee_cohorts_name_unique": {
+          "name": "employee_cohorts_name_unique",
+          "columns": [
+            "name"
+          ],
+          "nullsNotDistinct": false
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.employee_departments": {
+      "name": "employee_departments",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "employee_departments_name_unique": {
+          "name": "employee_departments_name_unique",
+          "columns": [
+            "name"
+          ],
+          "nullsNotDistinct": false
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.employee_personalizations": {
+      "name": "employee_personalizations",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "the_firm_account_id": {
+          "name": "the_firm_account_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "e_signature_image": {
+          "name": "e_signature_image",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "inspirational_quote": {
+          "name": "inspirational_quote",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "office_requirements": {
+          "name": "office_requirements",
+          "type": "text[]",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "department_id": {
+          "name": "department_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "cohort_id": {
+          "name": "cohort_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "employee_trait_id": {
+          "name": "employee_trait_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "department_id_idx": {
+          "name": "department_id_idx",
+          "columns": [
+            {
+              "expression": "department_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "with": {},
+          "method": "btree",
+          "concurrently": false
+        },
+        "cohort_id_idx": {
+          "name": "cohort_id_idx",
+          "columns": [
+            {
+              "expression": "cohort_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "with": {},
+          "method": "btree",
+          "concurrently": false
+        }
+      },
+      "foreignKeys": {
+        "employee_personalizations_the_firm_account_id_the_firm_accounts_id_fk": {
+          "name": "employee_personalizations_the_firm_account_id_the_firm_accounts_id_fk",
+          "tableFrom": "employee_personalizations",
+          "columnsFrom": [
+            "the_firm_account_id"
+          ],
+          "tableTo": "the_firm_accounts",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        },
+        "employee_personalizations_department_id_employee_departments_id_fk": {
+          "name": "employee_personalizations_department_id_employee_departments_id_fk",
+          "tableFrom": "employee_personalizations",
+          "columnsFrom": [
+            "department_id"
+          ],
+          "tableTo": "employee_departments",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        },
+        "employee_personalizations_cohort_id_employee_cohorts_id_fk": {
+          "name": "employee_personalizations_cohort_id_employee_cohorts_id_fk",
+          "tableFrom": "employee_personalizations",
+          "columnsFrom": [
+            "cohort_id"
+          ],
+          "tableTo": "employee_cohorts",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        },
+        "employee_personalizations_employee_trait_id_employee_traits_id_fk": {
+          "name": "employee_personalizations_employee_trait_id_employee_traits_id_fk",
+          "tableFrom": "employee_personalizations",
+          "columnsFrom": [
+            "employee_trait_id"
+          ],
+          "tableTo": "employee_traits",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "employee_personalizations_the_firm_account_id_unique": {
+          "name": "employee_personalizations_the_firm_account_id_unique",
+          "columns": [
+            "the_firm_account_id"
+          ],
+          "nullsNotDistinct": false
+        },
+        "employee_personalizations_employee_trait_id_unique": {
+          "name": "employee_personalizations_employee_trait_id_unique",
+          "columns": [
+            "employee_trait_id"
+          ],
+          "nullsNotDistinct": false
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.employee_traits": {
+      "name": "employee_traits",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "kidneys": {
+          "name": "kidneys",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 2
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.farcaster_accounts": {
+      "name": "farcaster_accounts",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "uuid_generate_v7()"
+        },
+        "username": {
+          "name": "username",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "display_name": {
+          "name": "display_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "pfp_url": {
+          "name": "pfp_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "follower_count": {
+          "name": "follower_count",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "fid": {
+          "name": "fid",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "farcaster_accounts_username_unique": {
+          "name": "farcaster_accounts_username_unique",
+          "columns": [
+            "username"
+          ],
+          "nullsNotDistinct": false
+        },
+        "farcaster_accounts_fid_unique": {
+          "name": "farcaster_accounts_fid_unique",
+          "columns": [
+            "fid"
+          ],
+          "nullsNotDistinct": false
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.the_firm_accounts": {
+      "name": "the_firm_accounts",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "uuid_generate_v7()"
+        },
+        "privy_user_id": {
+          "name": "privy_user_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "farcaster_account_id": {
+          "name": "farcaster_account_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "the_firm_accounts_farcaster_account_id_farcaster_accounts_id_fk": {
+          "name": "the_firm_accounts_farcaster_account_id_farcaster_accounts_id_fk",
+          "tableFrom": "the_firm_accounts",
+          "columnsFrom": [
+            "farcaster_account_id"
+          ],
+          "tableTo": "farcaster_accounts",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "the_firm_accounts_privy_user_id_unique": {
+          "name": "the_firm_accounts_privy_user_id_unique",
+          "columns": [
+            "privy_user_id"
+          ],
+          "nullsNotDistinct": false
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.the_firm_accounts_wallets": {
+      "name": "the_firm_accounts_wallets",
+      "schema": "",
+      "columns": {
+        "the_firm_account_id": {
+          "name": "the_firm_account_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "wallet_id": {
+          "name": "wallet_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {
+        "the_firm_accounts_wallets_the_firm_account_id_the_firm_accounts_id_fk": {
+          "name": "the_firm_accounts_wallets_the_firm_account_id_the_firm_accounts_id_fk",
+          "tableFrom": "the_firm_accounts_wallets",
+          "columnsFrom": [
+            "the_firm_account_id"
+          ],
+          "tableTo": "the_firm_accounts",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        },
+        "the_firm_accounts_wallets_wallet_id_wallets_id_fk": {
+          "name": "the_firm_accounts_wallets_wallet_id_wallets_id_fk",
+          "tableFrom": "the_firm_accounts_wallets",
+          "columnsFrom": [
+            "wallet_id"
+          ],
+          "tableTo": "wallets",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "the_firm_accounts_wallets_the_firm_account_id_wallet_id_pk": {
+          "name": "the_firm_accounts_wallets_the_firm_account_id_wallet_id_pk",
+          "columns": [
+            "the_firm_account_id",
+            "wallet_id"
+          ]
+        }
+      },
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.wallets": {
+      "name": "wallets",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "uuid_generate_v7()"
+        },
+        "address": {
+          "name": "address",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "verification_source_id": {
+          "name": "verification_source_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "wallets_address_lower_unique": {
+          "name": "wallets_address_lower_unique",
+          "columns": [
+            {
+              "expression": "lower(\"address\")",
+              "isExpression": true,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "with": {},
+          "method": "btree",
+          "concurrently": false
+        }
+      },
+      "foreignKeys": {
+        "wallets_verification_source_id_verification_sources_id_fk": {
+          "name": "wallets_verification_source_id_verification_sources_id_fk",
+          "tableFrom": "wallets",
+          "columnsFrom": [
+            "verification_source_id"
+          ],
+          "tableTo": "verification_sources",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.x_accounts": {
+      "name": "x_accounts",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "uuid_generate_v7()"
+        },
+        "username": {
+          "name": "username",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.blocks": {
+      "name": "blocks",
+      "schema": "",
+      "columns": {
+        "number": {
+          "name": "number",
+          "type": "bigint",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "timestamp": {
+          "name": "timestamp",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.contracts": {
+      "name": "contracts",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "uuid_generate_v7()"
+        },
+        "address": {
+          "name": "address",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "contracts_address_lower_unique": {
+          "name": "contracts_address_lower_unique",
+          "columns": [
+            {
+              "expression": "lower(\"address\")",
+              "isExpression": true,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "with": {},
+          "method": "btree",
+          "concurrently": false
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.deployer_account_types": {
+      "name": "deployer_account_types",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "table_name": {
+          "name": "table_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "deployer_account_type_name_unique": {
+          "name": "deployer_account_type_name_unique",
+          "columns": [
+            {
+              "expression": "LOWER(\"name\")",
+              "isExpression": true,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "with": {},
+          "method": "btree",
+          "concurrently": false
+        },
+        "deployer_account_type_table_name_unique": {
+          "name": "deployer_account_type_table_name_unique",
+          "columns": [
+            {
+              "expression": "LOWER(\"table_name\")",
+              "isExpression": true,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "with": {},
+          "method": "btree",
+          "concurrently": false
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.farcaster_notification_tokens": {
+      "name": "farcaster_notification_tokens",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "fid": {
+          "name": "fid",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "notification_token": {
+          "name": "notification_token",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "notification_url": {
+          "name": "notification_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "is_mini_app_added": {
+          "name": "is_mini_app_added",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "farcaster_notification_tokens_fid_idx": {
+          "name": "farcaster_notification_tokens_fid_idx",
+          "columns": [
+            {
+              "expression": "fid",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "with": {},
+          "method": "btree",
+          "concurrently": false
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.farcaster_notification_webhook_logs": {
+      "name": "farcaster_notification_webhook_logs",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "event_type": {
+          "name": "event_type",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "fid": {
+          "name": "fid",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "notification_token": {
+          "name": "notification_token",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "notification_url": {
+          "name": "notification_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "is_mini_app_added": {
+          "name": "is_mini_app_added",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.tokens": {
+      "name": "tokens",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "uuid_generate_v7()"
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "symbol": {
+          "name": "symbol",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "address": {
+          "name": "address",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "image_url": {
+          "name": "image_url",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "score": {
+          "name": "score",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "deployment_transaction_hash": {
+          "name": "deployment_transaction_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "deployment_contract_id": {
+          "name": "deployment_contract_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "deployer_account_type_id": {
+          "name": "deployer_account_type_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "deployer_account_id": {
+          "name": "deployer_account_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "creator_token_index": {
+          "name": "creator_token_index",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "total_supply": {
+          "name": "total_supply",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "block": {
+          "name": "block",
+          "type": "bigint",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "tokens_address_lower_unique": {
+          "name": "tokens_address_lower_unique",
+          "columns": [
+            {
+              "expression": "lower(\"address\")",
+              "isExpression": true,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "with": {},
+          "method": "btree",
+          "concurrently": false
+        },
+        "tokens_created_at_idx": {
+          "name": "tokens_created_at_idx",
+          "columns": [
+            {
+              "expression": "created_at",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": false,
+          "with": {},
+          "method": "btree",
+          "concurrently": false
+        }
+      },
+      "foreignKeys": {
+        "tokens_deployment_contract_id_contracts_id_fk": {
+          "name": "tokens_deployment_contract_id_contracts_id_fk",
+          "tableFrom": "tokens",
+          "columnsFrom": [
+            "deployment_contract_id"
+          ],
+          "tableTo": "contracts",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        },
+        "tokens_deployer_account_type_id_deployer_account_types_id_fk": {
+          "name": "tokens_deployer_account_type_id_deployer_account_types_id_fk",
+          "tableFrom": "tokens",
+          "columnsFrom": [
+            "deployer_account_type_id"
+          ],
+          "tableTo": "deployer_account_types",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        },
+        "tokens_block_blocks_number_fk": {
+          "name": "tokens_block_blocks_number_fk",
+          "tableFrom": "tokens",
+          "columnsFrom": [
+            "block"
+          ],
+          "tableTo": "blocks",
+          "columnsTo": [
+            "number"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {
+        "total_supply_positive": {
+          "name": "total_supply_positive",
+          "value": "\"tokens\".\"total_supply\" >= 0"
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "public.uniswap_versions": {
+      "name": "uniswap_versions",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "uniswap_version_name_unique": {
+          "name": "uniswap_version_name_unique",
+          "columns": [
+            {
+              "expression": "LOWER(\"name\")",
+              "isExpression": true,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "with": {},
+          "method": "btree",
+          "concurrently": false
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.verification_sources": {
+      "name": "verification_sources",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "verification_source_name_unique": {
+          "name": "verification_source_name_unique",
+          "columns": [
+            {
+              "expression": "LOWER(\"name\")",
+              "isExpression": true,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "with": {},
+          "method": "btree",
+          "concurrently": false
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.wire_tap_session_keys": {
+      "name": "wire_tap_session_keys",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "wire_tap_account_id": {
+          "name": "wire_tap_account_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "encrypted_session_key": {
+          "name": "encrypted_session_key",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "is_active": {
+          "name": "is_active",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "wire_tap_session_keys_wire_tap_account_id_active_unique": {
+          "name": "wire_tap_session_keys_wire_tap_account_id_active_unique",
+          "columns": [
+            {
+              "expression": "wire_tap_account_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "with": {},
+          "method": "btree",
+          "where": "\"wire_tap_session_keys\".\"is_active\" IS TRUE",
+          "concurrently": false
+        }
+      },
+      "foreignKeys": {
+        "wire_tap_session_keys_wire_tap_account_id_the_firm_accounts_id_fk": {
+          "name": "wire_tap_session_keys_wire_tap_account_id_the_firm_accounts_id_fk",
+          "tableFrom": "wire_tap_session_keys",
+          "columnsFrom": [
+            "wire_tap_account_id"
+          ],
+          "tableTo": "the_firm_accounts",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "wire_tap_session_keys_encrypted_session_key_unique": {
+          "name": "wire_tap_session_keys_encrypted_session_key_unique",
+          "columns": [
+            "encrypted_session_key"
+          ],
+          "nullsNotDistinct": false
+        }
+      },
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.pools": {
+      "name": "pools",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "uuid_generate_v7()"
+        },
+        "token_id": {
+          "name": "token_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "currency_id": {
+          "name": "currency_id",
+          "type": "uuid",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "pool_address": {
+          "name": "pool_address",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "is_primary": {
+          "name": "is_primary",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "fee_bps": {
+          "name": "fee_bps",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "starting_mcap_usd": {
+          "name": "starting_mcap_usd",
+          "type": "double precision",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "ath_mcap_usd": {
+          "name": "ath_mcap_usd",
+          "type": "double precision",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "uniswap_version_id": {
+          "name": "uniswap_version_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "token0_is_new_token": {
+          "name": "token0_is_new_token",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "pool_hook": {
+          "name": "pool_hook",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "tick_spacing": {
+          "name": "tick_spacing",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "starting_tick": {
+          "name": "starting_tick",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "pools_address_lower_unique": {
+          "name": "pools_address_lower_unique",
+          "columns": [
+            {
+              "expression": "lower(\"pool_address\")",
+              "isExpression": true,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "with": {},
+          "method": "btree",
+          "concurrently": false
+        }
+      },
+      "foreignKeys": {
+        "pools_token_id_tokens_id_fk": {
+          "name": "pools_token_id_tokens_id_fk",
+          "tableFrom": "pools",
+          "columnsFrom": [
+            "token_id"
+          ],
+          "tableTo": "tokens",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        },
+        "pools_currency_id_currencies_id_fk": {
+          "name": "pools_currency_id_currencies_id_fk",
+          "tableFrom": "pools",
+          "columnsFrom": [
+            "currency_id"
+          ],
+          "tableTo": "currencies",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        },
+        "pools_uniswap_version_id_uniswap_versions_id_fk": {
+          "name": "pools_uniswap_version_id_uniswap_versions_id_fk",
+          "tableFrom": "pools",
+          "columnsFrom": [
+            "uniswap_version_id"
+          ],
+          "tableTo": "uniswap_versions",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {
+        "uniswap_v4_check": {
+          "name": "uniswap_v4_check",
+          "value": "\n      (\n        \"pools\".\"uniswap_version_id\" = 2\n        AND \"pools\".\"pool_hook\" IS NOT NULL\n        AND \"pools\".\"tick_spacing\" IS NOT NULL\n      )\n      OR\n      (\n        \"pools\".\"uniswap_version_id\" = 1\n      )"
+        }
+      },
+      "isRLSEnabled": false
+    },
+    "public.currencies": {
+      "name": "currencies",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "uuid",
+          "primaryKey": true,
+          "notNull": true,
+          "default": "uuid_generate_v7()"
+        },
+        "address": {
+          "name": "address",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "symbol": {
+          "name": "symbol",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "decimals": {
+          "name": "decimals",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "currencies_address_lower_unique": {
+          "name": "currencies_address_lower_unique",
+          "columns": [
+            {
+              "expression": "lower(\"address\")",
+              "isExpression": true,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "with": {},
+          "method": "btree",
+          "concurrently": false
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.horsepower_event_sources": {
+      "name": "horsepower_event_sources",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "horsepower_event_source_name_unique": {
+          "name": "horsepower_event_source_name_unique",
+          "columns": [
+            {
+              "expression": "LOWER(\"name\")",
+              "isExpression": true,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "with": {},
+          "method": "btree",
+          "concurrently": false
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.horsepower_events": {
+      "name": "horsepower_events",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "horsepower_event_source_id": {
+          "name": "horsepower_event_source_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "recipient_account_type_id": {
+          "name": "recipient_account_type_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "recipient_account_id": {
+          "name": "recipient_account_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "horse_power_awarded": {
+          "name": "horse_power_awarded",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "new_horse_power_total": {
+          "name": "new_horse_power_total",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "default": 0
+        },
+        "cast_hash": {
+          "name": "cast_hash",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": false
+        }
+      },
+      "indexes": {
+        "unique_one_time_events_per_account": {
+          "name": "unique_one_time_events_per_account",
+          "columns": [
+            {
+              "expression": "recipient_account_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            },
+            {
+              "expression": "horsepower_event_source_id",
+              "isExpression": false,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "with": {},
+          "method": "btree",
+          "where": "\"horsepower_events\".\"horsepower_event_source_id\" IN (1, 2, 3)",
+          "concurrently": false
+        }
+      },
+      "foreignKeys": {
+        "horsepower_events_horsepower_event_source_id_horsepower_event_sources_id_fk": {
+          "name": "horsepower_events_horsepower_event_source_id_horsepower_event_sources_id_fk",
+          "tableFrom": "horsepower_events",
+          "columnsFrom": [
+            "horsepower_event_source_id"
+          ],
+          "tableTo": "horsepower_event_sources",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        },
+        "horsepower_events_recipient_account_type_id_horsepower_recipient_account_types_id_fk": {
+          "name": "horsepower_events_recipient_account_type_id_horsepower_recipient_account_types_id_fk",
+          "tableFrom": "horsepower_events",
+          "columnsFrom": [
+            "recipient_account_type_id"
+          ],
+          "tableTo": "horsepower_recipient_account_types",
+          "columnsTo": [
+            "id"
+          ],
+          "onUpdate": "no action",
+          "onDelete": "no action"
+        }
+      },
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
+    "public.horsepower_recipient_account_types": {
+      "name": "horsepower_recipient_account_types",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "table_name": {
+          "name": "table_name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "timestamp (3)",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {
+        "horsepower_recipient_account_type_table_name_unique": {
+          "name": "horsepower_recipient_account_type_table_name_unique",
+          "columns": [
+            {
+              "expression": "LOWER(\"table_name\")",
+              "isExpression": true,
+              "asc": true,
+              "nulls": "last"
+            }
+          ],
+          "isUnique": true,
+          "with": {},
+          "method": "btree",
+          "concurrently": false
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    }
+  },
+  "enums": {},
+  "schemas": {},
+  "views": {},
+  "sequences": {},
+  "roles": {},
+  "policies": {},
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}

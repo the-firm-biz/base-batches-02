@@ -1,0 +1,57 @@
+{
+  "name": "@wiretap/db",
+  "version": "1.0.0",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./dist/src/index.d.ts",
+      "default": "./dist/src/index.js"
+    },
+    "./clients": {
+      "types": "./dist/src/clients.d.ts",
+      "default": "./dist/src/clients.js"
+    },
+    "./unsafe__do-not-import-in-production": {
+      "types": "./dist/src/queries/unsafe/index.d.ts",
+      "default": "./dist/src/queries/unsafe/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch --preserveWatchOutput",
+    "lint": "eslint .",
+    "ts:check": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "db:migration-generate": "tsx ./src/scripts/db-generate.ts",
+    "db:migration-push": "tsx ./src/scripts/db-push.ts",
+    "db:migration": "pnpm run db:migration-generate && pnpm run db:migration-push",
+    "test-db:migration": "NODE_OPTIONS='--import tsx' drizzle-kit generate && drizzle-kit migrate --config drizzle.test.config.ts",
+    "local-script:reindex-horsepower-events": "tsx ./src/scripts/reindex-horsepower-events.ts",
+    "local-script:reindex-pools-addresses": "tsx ./src/scripts/reindex-pools-addresses.ts",
+    "local-script:reindex-token-image-url": "tsx ./src/scripts/reindex-token-image-url.ts"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "catalog:",
+    "@wiretap/config": "workspace:*",
+    "@wiretap/logger": "workspace:*",
+    "@wiretap/utils": "workspace:*",
+    "@vitest/coverage-istanbul": "catalog:",
+    "dotenv": "catalog:",
+    "drizzle-kit": "^0.31.0",
+    "drizzle-orm": "^0.42.0",
+    "pg": "^8.14.1",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@types/pg": "^8.11.13",
+    "@wiretap/eslint-config": "workspace:*",
+    "@wiretap/prettier-config": "workspace:*",
+    "@wiretap/typescript-config": "workspace:*",
+    "@wiretap/vitest-config": "workspace:*",
+    "vite": "catalog:",
+    "vitest": "catalog:",
+    "@uniswap/sdk-core": "catalog:",
+    "@uniswap/v3-sdk": "catalog:"
+  }
+}
