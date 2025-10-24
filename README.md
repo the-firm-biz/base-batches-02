@@ -1,4 +1,4 @@
-# base-batches-02 submission: HorsePower System 
+# base-batches-02 submission
 
 > _"While our competitors are deploying yesterday's strategies, we're already
 > frontrunning tomorrow's mistakes."_
@@ -7,7 +7,7 @@
 
 ---
 
-## Overview
+## Overview - HorsePower Awarding Webhook & Reindexing script 
 
 This is a selective snapshot of The Firm's broader Turborepo monorepo, showing how our community-behaviour-shaping tool *"HorsePower"* is awarded to users via Neynar webhooks and if necessary, a reindexing script.
 
@@ -50,7 +50,7 @@ This is a selective snapshot of The Firm's broader Turborepo monorepo, showing h
     │       │   │   ├── horsepower-events.ts
     │       │   │   ├── horsepower-event-sources.ts
     │       │   │   └── horsepower-recipient-account-types.ts
-    │       ├── queries/                           # Horsepower queries
+    │       └── queries/                           # Horsepower queries
     │           ├── crud/
     │           │   ├── inserts/                  
     │           │   │   ├── insert-horsepower-event.ts
