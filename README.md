@@ -28,10 +28,8 @@ This is a selective snapshot of The Firm's broader Turborepo monorepo, showing h
 
 ### Tech Stack
 
-- **Framework**: Encore.dev (TypeScript cloud platform)
-- **Database**: PostgreSQL with Drizzle ORM
-- **APIs**: Neynar SDK for Farcaster integration
-- **Runtime**: Node.js with ESM modules
+- **API**: Encore's TS SDK: queries Neynar for Farcaster data
+- **Database**: PostgreSQL with Drizzle ORM, deployed to Neon
 
 ## Repository Structure
 
